@@ -1,0 +1,328 @@
+@media (max-width: 800px) {
+  .portrait-boss-restoration #view[data-page=adventure]::before,
+  .portrait-boss-restoration > .scene-corners { display: none }
+
+  .portrait-boss {
+    --display: "Boss Serif", "Songti SC", "Noto Serif CJK SC", SimSun, serif;
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-rows: auto auto minmax(172px, 1fr) 44px auto 47px;
+    height: var(--view-height);
+    min-height: max(455px, var(--view-height));
+    overflow: hidden;
+    background: linear-gradient(#080d2130, #16132826 54%, #090c2066),
+      var(--restored-field) center top / cover no-repeat, #0c1021;
+  }
+  .portrait-boss-header {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding-top: 2px;
+  }
+  .portrait-boss-header > a {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    font: 24px var(--display);
+  }
+  .portrait-boss-header > a::before {
+    inset: 5px;
+    border: 0;
+    border-image: none;
+    background: var(--ui-round) center / contain no-repeat;
+  }
+  .portrait-boss-plate, .portrait-boss-header h1 img {
+    mask-image: linear-gradient(90deg, transparent, #000 9% 91%, transparent),
+      linear-gradient(transparent, #000 7% 89%, transparent);
+    mask-composite: intersect;
+  }
+  .portrait-boss-plate { width: clamp(136px, 43vw, 203px) }
+  .portrait-boss-header h1 { margin-top: -3px }
+  .portrait-boss-header h1 img { width: clamp(156px, 47vw, 222px) }
+
+  .portrait-boss .restored-hp {
+    position: relative;
+    inset: auto;
+    width: 91%;
+    max-width: 548px;
+    height: auto;
+    aspect-ratio: 457 / 43;
+    margin: -2px auto 0;
+  }
+  .portrait-boss .restored-hp-frame {
+    top: 25.6%;
+    left: 6.1%;
+    width: 93.9%;
+    clip-path: polygon(0 4%,96% 4%,100% 50%,96% 96%,0 96%);
+  }
+  .portrait-boss .restored-hp-gem { width: 9.85% }
+  .portrait-boss .restored-hp .boss-meter {
+    top: 34.8%;
+    left: 7.5%;
+    width: 79.95%;
+    height: 28%;
+    clip-path: polygon(4px 0,calc(100% - 3px) 0,100% 50%,calc(100% - 3px) 100%,0 100%);
+    background-size: auto 100%;
+  }
+  .portrait-boss .restored-hp .boss-meter i {
+    background-size: min(57vw, 342px) 100%;
+    clip-path: polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);
+  }
+  .portrait-boss .restored-hp #boss-percent {
+    top: 32.5%;
+    left: 88.7%;
+    width: 8.4%;
+    height: 33%;
+    display: grid;
+    place-items: center;
+    font-size: clamp(9px, 2.8vw, 13px);
+    line-height: 1;
+    box-shadow: inset 0 0 3px #110c1c;
+  }
+
+  .portrait-boss .restored-arena {
+    position: relative;
+    isolation: isolate;
+    container-type: size;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: none;
+  }
+  .portrait-boss .restored-arena .unit {
+    --ground-offset: clamp(0px, calc((100cqh - 320px) * .17), 36px);
+    top: calc(var(--y) - var(--ground-offset));
+  }
+  .portrait-boss .restored-arena .unit.ally { width: 19%; --unit-height: min(20vw, 32cqh, 125px) }
+  .portrait-boss .restored-arena .unit.ally:is([data-slot="3"],[data-slot="4"],[data-slot="5"],[data-slot="6"]) {
+    --unit-height: min(18vw, 28cqh, 108px);
+  }
+  .portrait-boss .restored-arena .unit.boss {
+    width: 44%;
+    --unit-height: min(44vw, 77cqh, 245px);
+  }
+  .portrait-boss .restored-arena .unit.boss-guard { width: 12%; --unit-height: min(14vw, 27cqh, 68px) }
+  .portrait-boss .restored-arena .unit-hp { top: -5px; width: clamp(29px, 8.7vw, 47px) }
+  .portrait-boss .restored-arena .unit-hp .element-mark { flex-shrink: 0 }
+  .portrait-boss .restored-arena .arena-caption { bottom: 3px; left: 7px; font-size: 9px }
+  .portrait-boss .restored-arena .windup, .portrait-boss .restored-impact { top: 3px }
+  .portrait-boss .restored-arena .windup { padding: 5px 12px; max-width: 92% }
+  .portrait-boss .restored-arena .windup b { font-size: clamp(15px, 4.26vw, 20px) }
+  .portrait-boss .restored-arena .windup span { font-size: clamp(10px, 2.9vw, 13px) }
+  .portrait-boss .restored-impact { width: max-content; max-width: 94%; padding: 5px 12px; font-size: clamp(12px, 3.5vw, 16px) }
+  .portrait-boss .restored-arena .cutin {
+    inset-inline: 12% auto;
+    width: 76%;
+    height: min(15vw, 65px);
+    gap: 6px;
+  }
+  .portrait-boss .restored-arena .cutin div { width: 34%; flex: none }
+  .portrait-boss .restored-arena .cutin b { font-size: clamp(11px, 3.55vw, 18px) }
+  .portrait-boss .restored-arena .floating-number { font-size: clamp(10px, 3vw, 14px); margin-top: -25px }
+
+  .portrait-boss-dock {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: clamp(1px, calc((100vw - 320px) * .04 + 1px), 6px);
+    width: min(100%, 560px);
+    margin-inline: auto;
+    padding-inline: clamp(3px, calc((100vw - 320px) * .06 + 3px), 11px);
+  }
+  .portrait-boss-dock::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 22% 0 -3px;
+    background:
+      linear-gradient(90deg, transparent, #c5a37a75 24% 76%, transparent) center bottom / 100% 1px no-repeat,
+      repeating-linear-gradient(122deg, #cbc0dd07 0 1px, transparent 1px 4px),
+      linear-gradient(0deg, #0c0d1bed, #181529d9 38%, #17152c39 84%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 9% 91%, transparent),
+      linear-gradient(transparent 1%, #000 32%);
+    mask-composite: intersect;
+    pointer-events: none;
+  }
+  .portrait-boss-dock .dock-card {
+    height: auto;
+    aspect-ratio: .52;
+    min-height: 44px;
+    max-height: 143px;
+    padding: 0;
+    touch-action: manipulation;
+  }
+  .portrait-boss-dock .card-sigil { top: 2.8%; width: 13px; height: 13px }
+  .portrait-boss-dock .card-sigil .element-mark { width: 10px; height: 10px; font-size: 7px }
+  .portrait-boss-dock .ready-icon { top: 15%; right: 9%; color: #fff4c1; font-size: 15px; text-shadow: 0 0 5px #da9325 }
+  .portrait-boss-dock .dock-name {
+    position: absolute;
+    inset: 74% 9% auto;
+    height: 14%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(90deg, #0d0c18b0, transparent 30% 70%, #0d0c18b0),
+      linear-gradient(transparent, #21182be8 55%, #0d0e19);
+    border-bottom: 1px solid #b996696d;
+    color: #f1d8b1;
+    font-size: clamp(8px, 2.48vw, 12px);
+    text-shadow: 0 1px 2px #130b1a;
+  }
+  .portrait-boss-dock .dock-stars { display: none }
+  .portrait-boss-dock .meter {
+    position: absolute;
+    left: 13%;
+    width: 74%;
+    height: 4%;
+    min-height: 3px;
+    max-height: 5px;
+    margin: 0;
+    background: linear-gradient(#070916, #21172a 80%, #070916);
+    border-color: #a183635f;
+    box-shadow: 0 0 0 1px #0c101b;
+  }
+  .portrait-boss-dock .meter.life { top: 87% }
+  .portrait-boss-dock .meter.energy { top: 92% }
+  .portrait-boss-dock .life i { background: linear-gradient(#b5f5e8, #42d1b7 50%, #38a790) }
+  .portrait-boss-dock .energy i { background: linear-gradient(95deg, #ac77e8, #5c9dec) }
+  .portrait-boss-dock .ready .energy i { background: linear-gradient(90deg, #f0a34b, #ffe9a1) }
+
+  .portrait-boss-controls {
+    isolation: isolate;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.58fr repeat(3, minmax(0, 1fr));
+    align-items: center;
+    justify-self: center;
+    width: min(calc(100% - 24px), 392px);
+    gap: 3px;
+    padding-inline: 8px;
+  }
+  .portrait-boss-tray {
+    position: absolute;
+    z-index: -1;
+    inset: 7px 13px 6px;
+    border-block: 1px solid #a7886b99;
+    background:
+      var(--portrait-tray-top) center -2px / 58px 9px no-repeat,
+      var(--portrait-tray-bottom) center calc(100% + 4px) / 54px 10px no-repeat,
+      repeating-linear-gradient(118deg, #cab6d50c 0 1px, transparent 1px 5px),
+      linear-gradient(#211f33, #121323 40%, #151425 74%, #302331);
+    box-shadow: inset 0 2px 3px #080913, inset 0 -2px 3px #050814, 0 3px 8px #0b0919cc;
+    pointer-events: none;
+  }
+  .portrait-boss-tray::before, .portrait-boss-tray::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    left: -13px;
+    width: 24px;
+    background: var(--portrait-tray-edge) center / 100% 100% no-repeat;
+    mask-image: linear-gradient(90deg, transparent, #000 19% 73%, transparent);
+  }
+  .portrait-boss-tray::after { left: auto; right: -13px; transform: scaleX(-1) }
+  .portrait-boss-controls button, .portrait-boss-challenge, .portrait-boss-command {
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: none;
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .portrait-boss-controls button { width: 100%; min-width: 0; }
+  .portrait-boss-controls button img, .portrait-boss-challenge img { width: 100%; height: auto }
+  .portrait-boss-controls .restored-auto img {
+    clip-path: polygon(16% 6%,84% 6%,100% 50%,84% 94%,16% 94%,0 50%);
+  }
+  .portrait-boss-controls .restored-auto[aria-pressed=true] img {
+    filter: sepia(.32) brightness(1.22) drop-shadow(0 0 3px #c68e4d84);
+  }
+  .portrait-boss-controls .restored-speed {
+    --speed-plate: var(--portrait-speed-idle);
+    --speed-metal: var(--portrait-speed-idle-metal);
+    --speed-letter-well: 32% 27%;
+  }
+  .portrait-boss-controls .restored-speed[aria-pressed=true] {
+    --speed-plate: var(--portrait-speed-gold);
+    --speed-metal: var(--portrait-speed-gold-metal);
+    --speed-letter-well: 27% 25%;
+  }
+  .portrait-speed-plate, .portrait-command-plate {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    translate: 0 -50%;
+    pointer-events: none;
+  }
+  .portrait-speed-plate {
+    aspect-ratio: 72 / 29;
+    background: var(--speed-plate) center / 100% 100% no-repeat;
+    clip-path: polygon(17% 1%,82% 1%,100% 50%,83% 97%,17% 97%,0 50%);
+  }
+  .portrait-speed-plate::after, .portrait-command-plate::after {
+    content: "";
+    position: absolute;
+    mask-image: linear-gradient(90deg, transparent, #000 11% 90%, transparent);
+  }
+  .portrait-speed-plate::after {
+    inset-block: 13% 14%;
+    inset-inline: var(--speed-letter-well);
+    background: var(--speed-metal) center / 100% 137% no-repeat;
+  }
+  .portrait-speed-text {
+    position: relative;
+    z-index: 1;
+    color: #fff0db;
+    font: 600 clamp(14px, 4.05vw, 17px)/1 "Times New Roman", serif;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: .025em;
+    text-shadow: 0 1px 1px #03050b, 0 0 3px #080814;
+  }
+  .restored-speed[aria-pressed=true] .portrait-speed-text {
+    color: #fff6d9;
+    text-shadow: 0 1px 2px #452712, 0 0 4px #efb8736b;
+  }
+  .portrait-boss .battle-actions { z-index: 2; justify-content: center; align-items: center; gap: 10px }
+  .portrait-boss-challenge, .portrait-boss-command { width: clamp(110px, 32vw, 142px) }
+  .portrait-command-plate {
+    aspect-ratio: 130 / 44;
+    background: var(--portrait-action) center / 100% 100% no-repeat;
+    clip-path: polygon(16% 6%,84% 6%,93% 36%,100% 50%,94% 62%,86% 86%,56% 86%,50% 100%,44% 86%,14% 86%,6% 62%,0 50%,7% 38%);
+  }
+  .portrait-command-plate::after {
+    inset: 15% 27% 24%;
+    background: radial-gradient(ellipse at 50% 51%, #fff1dc60, transparent 76%),
+      var(--portrait-action-silver) center / 100% 165% no-repeat;
+  }
+  .portrait-command-text {
+    position: relative;
+    z-index: 1;
+    color: #2b1b27;
+    font: 800 clamp(16px, 4.6vw, 20px)/1 var(--display);
+    letter-spacing: .16em;
+    padding-inline-start: .16em;
+    text-shadow: 0 1px #fff1de, 0 0 4px #fff0d7aa;
+  }
+  .portrait-boss-controls button:active, .portrait-boss .battle-actions button:active {
+    filter: brightness(1.12);
+  }
+  .portrait-boss-challenge img { clip-path: polygon(13% 5%,87% 5%,99% 50%,88% 87%,57% 87%,50% 100%,43% 87%,12% 87%,0 50%) }
+  .portrait-boss-roses { position: absolute; inset: auto auto 0 0; width: clamp(55px, 21vw, 105px); pointer-events: none }
+  .portrait-boss-roses.left { mask-image: radial-gradient(ellipse at left bottom, #000 30%, transparent 75%) }
+  .portrait-boss-roses.right {
+    inset-inline: auto 0;
+    mask-image: radial-gradient(ellipse at right bottom, #000 30%, transparent 75%);
+  }
+}

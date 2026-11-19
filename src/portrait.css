@@ -1,0 +1,238 @@
+@media (max-width: 800px) {
+  .app-shell {
+    --nav-height: calc(48px + env(safe-area-inset-bottom));
+    --view-height: max(455px, calc(100dvh - env(safe-area-inset-top) - var(--nav-height)));
+    display: block; max-width: 620px; min-height: 100dvh;
+    padding: env(safe-area-inset-top) 0 var(--nav-height);
+  }
+  .app-shell:is([data-scene=chapter],[data-scene=formation],[data-scene=tavern],[data-scene=vault]) { --nav-height: env(safe-area-inset-bottom) }
+  .app-shell:is([data-scene=chapter],[data-scene=formation],[data-scene=tavern],[data-scene=vault]) .rail,
+  .masthead, .monogram, .rail-bottom, #navigation a:is([href="#chapter"],[href="#formation"]),
+  #navigation a small, #navigation a[aria-current]::after { display: none }
+  #view { min-height: var(--view-height); padding: 0 }
+  .rail {
+    position: fixed; inset: auto 0 0; width: min(100%,620px); margin-inline: auto; min-width: 0; height: var(--nav-height);
+    justify-content: end; padding: 0 0 env(safe-area-inset-bottom); border: 0; border-top: 1px solid #a9876566;
+    background: linear-gradient(180deg,#17152989,#101326 57%);
+  }
+  #navigation { grid-template-columns: repeat(5,minmax(0,1fr)); gap: 2px; padding: 0 6px }
+  #navigation a {
+    min-height: 46px; align-content: center; gap: 1px; font-size: 11px; border-radius: 8px 8px 2px 2px;
+    text-shadow: 0 2px 3px #0c0b1c;
+  }
+  #navigation a .nav-icon { display: grid; place-items: center; width: 26px; height: 24px }
+  #navigation a:is([aria-current],[data-parent-current]) {
+    border-color: #d2a47561; color: #ffebbf; background: radial-gradient(ellipse at top,#84644866,#21192f4d 76%);
+  }
+  #navigation a[aria-current]::before {
+    content: ""; position: absolute; top: -1px; left: 18%; right: 18%; height: 5px;
+    background: var(--ui-rule) center / 100% 100% no-repeat;
+  }
+  .scene-corners i { width: clamp(60px,19vw,116px); opacity: .9 }
+  .scene-corners i:nth-child(1), .scene-corners i:nth-child(3) { left: max(0px,calc((100vw - 620px) / 2)) }
+  .scene-corners i:nth-child(2), .scene-corners i:nth-child(4) { right: max(0px,calc((100vw - 620px) / 2)) }
+  .scene-corners i:nth-child(3), .scene-corners i:nth-child(4) { bottom: var(--nav-height) }
+  #toast { bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 15 }
+  .app-shell:is([data-scene=heroes],[data-scene=adventure],[data-scene=sanctum]) ~ #toast { bottom: calc(52px + env(safe-area-inset-bottom)) }
+
+  .scene-heading {
+    background: transparent; padding: 11px 50px 8px; min-height: 57px;
+    align-content: start; display: grid;
+  }
+  .scene-heading h1, .scene-title, .battle-plate {
+    display: inline-flex; gap: 5px; padding: 4px 26px;
+    font: 800 clamp(22px,6.2vw,31px) var(--display); line-height: 1.05; letter-spacing: .09em;
+    color: #f5ddba; text-shadow: 0 2px 5px #080711;
+  }
+  .scene-heading h1::before, .scene-title::before, .battle-plate::before {
+    content: ""; position: absolute; z-index: -1; inset: -6px -20px;
+    background: var(--ui-mobile-title) center / 100% 100% no-repeat; pointer-events: none;
+  }
+  .scene-heading a.control { --square-button-size: 34px; position: absolute; top: 11px; font: 700 24px/1 var(--display) }
+  .scene-heading a.control::before, .round-control::before {
+    border: 0; border-image: none; background: var(--ui-round) center / 100% 100% no-repeat;
+  }
+  .scene-heading .scene-home { left: auto; right: 10px }
+  .scene-heading .scene-home .icon { width: 17px; height: 17px }
+  .scene-heading .scene-back { left: 10px }
+  .scene-screen, .sanctum, .hero-showcase, .tavern-banner, .vault-banner {
+    border: 0; border-radius: 0; box-shadow: none;
+  }
+  .scene-screen, .sanctum { min-height: var(--view-height); background-position: center; background-size: cover }
+  .scene-actions { position: relative; justify-content: center; flex-wrap: wrap; gap: 5px 10px; padding: 7px 12px 19px; background: linear-gradient(transparent,#11132680) }
+  .scene-actions span { font-size: 10px }
+  .scene-actions .primary { min-width: 140px }
+  .round-control { width: 35px; height: 35px; min-width: 35px; min-height: 35px; padding: 0; font-size: 21px }
+
+  .sanctum { background-image: var(--portrait-scene); }
+  .sanctum::after { background: linear-gradient(0deg,#0d1127ab,transparent 23% 83%,#0a112635) }
+  .scene-title { margin-top: 13px }
+  .scene-title .icon { width: 21px; height: 21px }
+  .sanctum-art { top: 11%; width: 92%; height: 75%; object-position: center bottom }
+  .sanctum-content { padding: 3px 13px 14px }
+  .sanctum-content p { font-size: 10px; margin-bottom: 5px }
+
+  .adventure-grid { display: block }
+  .battle-panel {
+    --card-height: clamp(65px,22vw,109px);
+    --battle-height: max(290px,calc(var(--view-height) - var(--card-height) - 95px));
+    display: flex; flex-direction: column; min-height: var(--view-height);
+  }
+  #view[data-page=adventure]::before {
+    background: linear-gradient(#10132628,transparent 62%,#0d112783),var(--field-image) 50% 50% / auto 100dvh no-repeat,#111425;
+  }
+  .boss-encounter .arena-vignette { background: linear-gradient(#0b11204d,transparent 40%) }
+  .battle-header { position: absolute; gap: 7px; min-height: 0; padding: 10px 62px 0; }
+  .battle-plate { position: relative; isolation: isolate; font-size: 21px }
+  .battle-plate .icon { width: 24px; height: 24px }
+  .stage-title > span { font-size: 9px; margin-bottom: 1px }
+  .stage-title h1 { font-size: clamp(16px,5.1vw,23px); padding: 1px 11px; text-shadow: 0 2px 4px #080812 }
+  .stage-title h1::before { inset: 0 -27px }
+  .chapter-control { top: 11px; left: 6px; --button-height: 34px; min-width: 57px; min-height: var(--button-height); padding-inline: 8px; gap: 2px; font-size: 10px }
+  .chapter-control .icon { width: 13px; height: 13px }
+  .arena { height: var(--battle-height) }
+  .arena-caption { bottom: 5px; left: 8px; font-size: 9px }
+  .boss-hud { top: 88px; width: 88%; grid-template-columns: 20px 1fr; gap: 3px }
+  .boss-label { font-size: 10px; margin-bottom: 2px }
+  .boss-meter { height: 10px; padding-block: 2px; --cap: 4px }
+  .windup { top: 113px; max-width: calc(100% - 14px); padding: 4px 10px; }
+  .windup b { font-size: clamp(14px,4.2vw,18px) }
+  .unit { width: 21%; --unit-height: clamp(72px,30vw,155px) }
+  .unit.boss { width: 41%; --unit-height: min(55vw,calc(var(--battle-height) - 135px),220px) }
+  .unit.boss-guard { width: 12%; --unit-height: clamp(41px,12vw,68px) }
+  .unit-hp { width: 43px; max-width: 86%; gap: 2px; top: -5px }
+  .unit-hp .element-mark { width: 10px; height: 10px; font-size: 7px }
+  .unit-hp > span:last-child { height: 3px }
+  .battle-dock { order: 1; border: 0; padding: 4px 6px 5px; background: transparent }
+  .dock-slots { width: min(100%,520px); gap: clamp(2px,.8vw,6px) }
+  .dock-card { height: var(--card-height); min-height: 0; max-height: none; aspect-ratio: auto; padding: 3px 0 10% }
+  .dock-card kbd { display: none }
+  .dock-name { font-size: clamp(8px,2.45vw,12px) }
+  .dock-stars { font-size: 6px }
+  .dock-card .element-mark { width: 12px; height: 12px; font-size: 8px }
+  .dock-card .card-sigil { top: -1px }
+  .dock-card .ready-icon { top: 6%; right: 2%; font-size: 13px }
+  .meter { box-sizing: border-box; height: 3px; margin-top: 2px }
+  .battle-options {
+    order: 2; position: relative; inset: auto; align-self: center; justify-content: center;
+    min-height: 36px; padding: 0 13px; gap: 5px;
+    background: var(--ui-rule) center / 100% 13px no-repeat;
+  }
+  .battle-options > .control { --button-height: 35px; min-width: 73px; min-height: var(--button-height); font-size: 11px }
+  .speed-options .control { --square-button-size: 35px; font-size: 11px }
+  .battle-footer { order: 3; gap: 5px; min-height: 44px; padding: 4px 8px 3px; background: linear-gradient(transparent,#1015274c) }
+  .battle-hint { font-size: clamp(9px,2.4vw,11px); text-shadow: 0 1px 4px #09091b; line-height: 1.35 }
+  .battle-actions { gap: 4px }
+  .battle-actions .button { --button-height: 35px; min-height: var(--button-height); padding: 4px 8px; font-size: 12px; min-width: 55px }
+  .battle-actions .button .icon { display: none }
+  .battle-actions .primary { --button-height: 37px; min-width: 68px }
+  .chapter-panel { display: none }
+
+  .chapter-screen { background-position: center 56% }
+  .map-board { min-height: 0 }
+  .map-stages button, .map-stages button:disabled, .map-stages button[aria-current] {
+    position: relative; width: 38px; height: 38px; background: none; border: 0; box-shadow: none;
+  }
+  .map-stages button span { position: absolute; font-size: 0 }
+  .map-stages button::before {
+    content: ""; width: 14px; height: 14px; border: 1px solid #eed0f1; border-radius: 50%;
+    background: radial-gradient(circle at 43% 28%,#dbc3ee,#775696 62%,#301e50);
+    box-shadow: 0 0 8px #c999dfa1;
+  }
+  .map-stages button:disabled::before { filter: brightness(.78) }
+  .map-stages button[aria-current]::before {
+    width: 26px; height: 26px; border: 2px double #f4cb81;
+    background: radial-gradient(ellipse,#fff2ad,#b77b46 57%,#30233f 66%);
+    box-shadow: 0 0 12px #ffbd6aaf;
+  }
+  .map-actions { gap: 10px; padding-bottom: 23px }
+  .map-actions .button { min-width: 128px }
+
+  .formation-screen { background-position: center }
+  .formation { align-content: center; grid-template-rows: 1fr 1fr; gap: clamp(4px,3dvh,28px); padding-inline: 6px }
+  .formation-rank h2 { font-size: 10px; margin-bottom: 1px }
+  .formation-row { gap: 2px }
+  .formation-slot { height: clamp(116px,30dvh,255px); padding-top: 2px }
+  .formation-sprite { height: clamp(89px,26dvh,226px) }
+  .formation-name { font-size: 10px }
+  .formation-screen .scene-actions { flex-direction: column; padding-bottom: 21px }
+
+  .secondary { position: relative }
+  .secondary > .scene-heading { position: absolute; inset: 0 0 auto; z-index: 3 }
+  .hero-screen { --hero-dock-height: clamp(110px,35vw,138px); background: var(--hero-scene) center top / auto var(--view-height) no-repeat }
+  .hero-layout { display: grid; grid-template-columns: minmax(0,1fr); gap: 0 }
+  .hero-showcase { grid-row: 1; min-height: 0; height: calc(var(--view-height) - var(--hero-dock-height)) }
+  .hero-showcase .portrait-zoom { top: 52px; right: 8px }
+  .hero-showcase::after { background: linear-gradient(#100a1e8c, transparent 19% 73%, #110d20a6) }
+  .showcase-caption { inset: auto auto 5px 10px; max-width: 34% }
+  .showcase-caption p { font-size: 9px; margin: 0 }
+  .showcase-caption h2 { font-size: clamp(17px,5vw,22px); margin: 2px 0 0 }
+  .showcase-caption > small, .showcase-caption > b { display: none }
+  .hero-tools {
+    display: grid; gap: 3px; position: absolute; z-index: 2; top: 22%; right: 6px;
+    padding: 10px 5px; background: var(--ui-tool-rail) center / 100% 100% no-repeat;
+  }
+  .hero-tools .control { width: 35px; height: 32px; min-width: 0; min-height: 0; padding: 0 }
+  .hero-tools .control::before { border: 0; border-image: none; background: var(--ui-round) center / 92% 92% no-repeat }
+  .hero-tools .icon { object-fit: contain; width: 19px; height: 19px }
+  .hero-picker { grid-row: 2; display: grid; align-content: center; gap: 6px; min-height: var(--hero-dock-height); padding: 3px 9px 5px; background: transparent; border: 0; box-shadow: none }
+  .hero-picker > :is(h2,.button,.resonance) { display: none }
+  .hero-grid {
+    grid-template-columns: repeat(7,minmax(0,1fr)); gap: 3px; margin: 0;
+    padding: 5px; border: 3px double #a88769a8; border-radius: 10px 5px; background: #1c1a32bb;
+  }
+  .hero-grid .hero-thumb { min-height: 0; aspect-ratio: .86; padding: 0 1px 2px; font-size: clamp(8px,2.2vw,11px); border-radius: 4px }
+  .hero-grid .hero-thumb small { display: none }
+  .hero-quick { text-align: center }
+  .hero-quick .button { min-width: min(175px,66%) }
+  .hero-details { grid-row: 3; margin: 5px 8px 10px; padding: 11px 10px; scroll-margin-top: 12px }
+  .hero-details .button { --button-height: 39px; min-height: var(--button-height); padding-inline: 12px }
+  .gear button { min-height: 31px; min-width: 29px }
+
+  .tavern-banner, .vault-banner { min-height: var(--view-height) }
+  .tavern-banner { align-items: end; background: var(--portrait-scene) center / cover no-repeat; isolation: isolate }
+  .tavern-art { width: 96%; height: max(230px,calc(100% - 166px)); inset: 55px 2% auto; object-position: center top }
+  .tavern-banner::after { background: linear-gradient(0deg,#101428e8 6%,#12172aa0 19%,transparent 42%) }
+  .tavern-text { width: min(100%,540px); max-width: none; margin-inline: auto; padding: 0 13px 20px; text-align: center }
+  .tavern-text > .eyebrow, .tavern-text > h2, .tavern-text > h2 + p { display: none }
+  .draw-count { justify-content: center; align-items: center; gap: 7px; margin: 5px 0 4px; font-size: 10px }
+  .summon-balance { display: flex; align-items: center; gap: 3px }
+  .summon-balance .currency { width: 15px; height: 13px; object-fit: contain }
+  .tavern-text .chapter-track { width: min(70%,230px); margin-inline: auto }
+  .summon-cards { height: clamp(55px,15.3vw,90px); padding: 1px 0 2px; gap: 5px; align-items: end }
+  .summon-cards i { width: clamp(25px,8.4vw,43px); transform: rotate(-10deg) }
+  .summon-cards i:nth-child(3) { width: clamp(30px,9.8vw,50px); transform: translateY(-3px) }
+  .summon-cards i:nth-child(n+4) { transform: rotate(10deg) }
+  .tavern-text .training { margin: 6px 0 4px; justify-content: center }
+  .tavern-text .training .button { flex: 1; max-width: 218px }
+  .tavern-note { font-size: 10px !important }
+  .pool-rules { margin: 6px 8px 10px }
+
+  .vault-banner { position: relative; display: grid; grid-template-columns: minmax(0,1fr); align-content: end; background: var(--vault-scene) center / cover no-repeat; }
+  .vault-emblem { display: none }
+  .vault-wallet { position: absolute; top: 56px; left: 9%; right: 9%; justify-content: center; gap: 5px }
+  .wallet-chip { min-width: 0; min-height: 23px; gap: 4px; padding: 2px 6px }
+  .wallet-chip .currency { width: 16px; height: 16px }
+  .wallet-chip b { font-size: clamp(9px,2.9vw,12px) }
+  .vault-content {
+    position: relative; min-width: 0; padding: 9px 12px 21px; text-align: center;
+    background: linear-gradient(0deg,#111528d8,transparent 86%);
+  }
+  .vault-content h2 { display: none }
+  .vault-content > p { margin: 3px 0; font-size: 10px }
+  .vault-content .chapter-track { width: min(74%,245px); margin: 5px auto 0 }
+  .vault-content #idle-rewards:not(:empty) { padding: 3px 0 }
+  .vault-content .reward-list { gap: 8px; justify-content: center; margin: 6px 0 7px }
+  .vault-content .reward-list > div { width: clamp(50px,15vw,77px); min-width: 0; padding: 7px 2px }
+  .vault-content .reward-list > div::before { background: var(--ui-round) center / 100% 100% no-repeat; opacity: .8 }
+  .vault-content .reward-list > div::after { display: none }
+  .vault-content .reward-list .currency { width: 27px; height: 25px }
+  .vault-content .training { justify-content: center; gap: 5px; flex-wrap: nowrap }
+  .vault-content .training .button { flex: 1; max-width: 191px; padding-inline: 8px; font-size: 12px }
+  .vault-content > .cost-line { font-size: 9px; margin: 6px 0 0 }
+
+  @media (max-width: 350px) {
+    .battle-dock { padding-inline: 4px }
+    .dock-slots { gap: 2px }
+  }
+}
